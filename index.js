@@ -36,20 +36,32 @@ const filePath = path.join(__dirname, "index.html");
 //   }
 // })
 
-const server = express();
-
-server.get("/", (req, res) => {
-  res.send("hello nodejs");
+// const server = express();
+const server = http.createServer((req, res) => {
+  switch (res.url) {
+    case "/":
+      console.log("hello javascript");
+      break;
+    case "/login":
+      console.log(" login success");
+      break;
+    default:
+      console.log("404 not found");
+      break;
+  }
 });
-server.get("/login", (req, res) => {
-  res.send("<h1>You are in login page</h1>");
-});
-server.get("/html", (req, res) => {
-  res.sendFile(filePath);
-});
-server.get("*", (req, res) => {
-  res.send("<h1>404 not found</h1>");
-});
+// server.get("/", (req, res) => {
+//   res.send("hello nodejs");
+// });
+// server.get("/login", (req, res) => {
+//   res.send("<h1>You are in login page</h1>");
+// });
+// server.get("/html", (req, res) => {
+//   res.sendFile(filePath);
+// });
+// server.get("*", (req, res) => {
+//   res.send("<h1>404 not found</h1>");
+// });
 
 server.listen(PORT, () => {
   console.log(`server is started at http://localhost:${PORT}`);
