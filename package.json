@@ -1,0 +1,24 @@
+{
+  "name": "krunal-nodejs-learning",
+  "version": "1.0.0",
+  "description": "this is my first repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krunalghaskata/krunal-nodejs-learning.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krunalghaskata/krunal-nodejs-learning/issues"
+  },
+  "homepage": "https://github.com/krunalghaskata/krunal-nodejs-learning#readme",
+  "devDependencies": {
+    "nodemon": "3.0.1"
+  }
+}
