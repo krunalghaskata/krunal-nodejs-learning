@@ -1,12 +1,14 @@
-// console.log('hello world');
-require("dotenv").config();
-const http = require("http");
-const fs = require("fs");
-const path = require("path");
+// const http = require("http");
+// require("dotenv").config();
 const express = require("express");
-const os = require("os");
+const config = require("../config/config");
+const route = require("./route");
 
-const PORT = process.env.PORT || 5000;
+// const fs = require("fs");
+// const path = require("path");
+// const os = require("os");
+
+// const PORT = process.env.PORT || 5000;
 
 //const filePathByAsync = fs.readFile("first.html", "utf-8", (error, data) => {
 //console.log("filePathByAsync", data);
@@ -14,8 +16,8 @@ const PORT = process.env.PORT || 5000;
 //const filePathBySync = fs.readFileSync("first.html", "utf-8");
 //console.log("filePathBySync", filePathBySync);
 
-const filePath = path.join(__dirname, "first.html");
-const fileSet = path.join(__dirname, "index.html");
+// const filePath = path.join(__dirname, "first.html");
+// const fileSet = path.join(__dirname, "index.html");
 
 //////////////////////////////////////////////////////////////////////////
 // module wrapper function
@@ -127,7 +129,6 @@ const fileSet = path.join(__dirname, "index.html");
 // console.log(os.freemem());
 // console.log(os.userInfo());
 //////////////////////////////////////////////////////////////////
-const server = express();
 ////////////////////////////////////////////////////////////////////
 // basic express route  with path module
 
@@ -158,7 +159,12 @@ const server = express();
 // server.get("*", (req, res) => {
 //   res.send("<h1>404 not found</h1>");
 // });
+const app = express();
+
+// app.use(express.json())
+app.use("/", route);
+
 ////////////////////////////////////////////////////////////////////////
-server.listen(PORT, () => {
-  console.log(`server is started at http://localhost:${PORT}`);
+app.listen(config.PORT, () => {
+  console.log(`server is started at http://localhost:${config.PORT}`);
 });
