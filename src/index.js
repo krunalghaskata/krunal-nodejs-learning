@@ -160,9 +160,8 @@ const route = require("./route");
 //   res.send("<h1>404 not found</h1>");
 // });
 const app = express();
-
-// app.use(express.json())
-app.use("/", route);
+app.use(express.json());
+app.use("/api", route);
 
 ////////////////////////////////////////////////////////////////////////
 app.listen(config.PORT, () => {

@@ -1,12 +1,17 @@
 const express = require("express");
 route = express.Router();
 
-const isNotFound = require("../controller/404");
-const userController = require("../controller/user");
-const userLogin = require("../controller/login");
+// const isNotFound = require("../controller/404");
+// const userController = require("../controller/user");
+// const userLogin = require("../controller/login");
+const { createUser, getAllUser, getId } = require("../controller/addUser");
 
-route.get("/", userController);
-route.get("/login", userLogin);
-route.get("*", isNotFound);
+// route.get("/", userController);
+// route.get("/user/getAll", userLogin);
+// route.get("*", isNotFound);
+
+route.post("/user/create", createUser);
+route.get("/user/getAll", getAllUser);
+route.get("/user/get/:id", getId);
 
 module.exports = route;
