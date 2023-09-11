@@ -31,8 +31,20 @@ const getId = (req, res) => {
   res.status(200).send(data);
 };
 
+const getName = (req, res) => {
+  const name = req.params.name;
+  const data = users.find((names) => {
+    return names.name === name;
+  });
+  if (!data) {
+    res.status(404).json({ massage: "name is not found" });
+  }
+  res.status(200).send(data);
+};
+
 module.exports = {
   createUser,
   getAllUser,
   getId,
+  getName,
 };
