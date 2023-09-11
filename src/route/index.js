@@ -17,7 +17,7 @@ const {
 
 route.post("/user/create", createUser);
 route.get("/user/getAll", getAllUser);
+route.get("/user/gets/:name", getName);
 route.get("/user/get/:id", getId);
-route.get("/user/get/:name", getName);
 
 module.exports = route;

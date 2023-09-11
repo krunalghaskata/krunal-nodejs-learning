@@ -8,21 +8,21 @@ const userData = data.users;
 
 const createUser = (req, res) => {
   const user = req.body;
-  users.push(user);
+  userData.push(user);
   const writeData = {
-    users: user,
+    users: userData,
   };
-  const writeFile = fs.writeFileSync(dataPath, writeData);
+  const writeFile = fs.writeFileSync(dataPath, JSON.stringify(writeData));
   res.status(200).send(user);
 };
 
 const getAllUser = (req, res) => {
-  res.status(200).send(users);
+  res.status(200).send(userData);
 };
 
 const getId = (req, res) => {
   const id = req.params.id;
-  const data = users.find((user) => {
+  const data = userData.find((user) => {
     return user.id === id;
   });
   if (!data) {
@@ -33,7 +33,7 @@ const getId = (req, res) => {
 
 const getName = (req, res) => {
   const name = req.params.name;
-  const data = users.find((names) => {
+  const data = userData.find((names) => {
     return names.name === name;
   });
   if (!data) {
