@@ -1,6 +1,7 @@
 // const http = require("http");
 // require("dotenv").config();
 const express = require("express");
+const rateLimit = require("express-rate-limit");
 const config = require("../config/config");
 const route = require("./route");
 
@@ -145,7 +146,7 @@ const route = require("./route");
 
 ////////////////////////////////////////////////////////////////////
 // server.get("/", (req, res) => {
-//   res.send(`hello  ${req.query.name}`);
+//   res.send(`hello  ${req.query.name}`);   //http://localhost:8000/?name=krunal
 // });
 // server.get("/login", (req, res) => {
 //   res.send("<h1>You are in login page</h1>");
@@ -159,11 +160,21 @@ const route = require("./route");
 // server.get("*", (req, res) => {
 //   res.send("<h1>404 not found</h1>");
 // });
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000,
+  max: 10,
+  statusCode: 200,
+  message: {
+    status: 429,
+    error: "You are doing that too much. Please try again in 10 minutes.",
+  },
+});
+
 const app = express();
 app.use(express.json());
 app.use("/api", route);
-
+app.use("/api", limiter);
 ////////////////////////////////////////////////////////////////////////
-app.listen(config.PORT, () => {
-  console.log(`server is started at http://localhost:${config.PORT}`);
+app.listen(config.port, () => {
+  console.log(`server is started at http://localhost:${config.port}`);
 });
